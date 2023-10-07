@@ -21,6 +21,8 @@ Invoke isEqual & display if points are same or different (i.e p1 & p2 are locate
 position)
 If they are not located at the same position , display distance between p1 & p2
  */
+
+
 public class Question_4 {
 
 	public static void main(String[] args) {
