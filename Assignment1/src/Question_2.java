@@ -14,16 +14,24 @@ public class Question_2 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-//		System.out.print("Enter value 1:");
-//		double number1 = sc.nextDouble();
-//		System.out.print("Enter value 2:");
-//		double number2 = sc.nextDouble();
-		
-//		double avg = (number1 + number2)/2;
-		if(sc.hasNextDouble() && !sc.hasNextInt())
-//			System.out.println("Average of "+ number1+ " and "+ number2+" is ");
+		System.out.print("Enter number 1 :");
+		if(sc.hasNextDouble() && !sc.hasNextInt()) {
+			double number1 = sc.nextDouble();
+			System.out.print("Enter number 2 :");
+			if(sc.hasNextDouble() && !sc.hasNextInt())
+			{
+				
+				double number2 = sc.nextDouble();
+				double avg = (number1 + number2) / 2;	
+				System.out.println("Average of "+ number1+ " and "+ number2+" is "+avg);
+			}
+			else
+				System.out.println("Enter proper decimal values as input");
+			}
 		else
-			System.out.println("Enter proper double values as input");
+		{
+			System.out.println("Enter proper decimal values as input");
+		}
 	}
 
 }
