@@ -1,5 +1,7 @@
 package com.app.geometry;
 
+import java.lang.Math;
+
 public class Point2D {
 		double x;
 		double y;
@@ -23,13 +25,22 @@ public class Point2D {
 			this.y = y;
 		}
 		public String getDetails() {
-			
-			return "";
+			String sx,sy;
+			sx=Double.toString(this.x);
+			sy=Double.toString(this.y);
+			return "Point = ("+sx+","+sy+")";
 		}
-		boolean isEqual() {
-			if(10==10)
+		public boolean isEqual(Point2D p) {
+			if(p.x==this.x && p.y==this.y)
 				return true;
 			else
 				return false;
+		}
+		public double calculateDistance(Point2D p) {
+			double distance,x_sq,y_sq;
+			x_sq = p.x-this.x;
+			y_sq = p.y-this.y;
+			distance = Math.sqrt((x_sq*x_sq)-(y_sq*y_sq));
+			return distance;
 		}
 }
