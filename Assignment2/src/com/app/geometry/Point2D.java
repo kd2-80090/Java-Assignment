@@ -37,10 +37,10 @@ public class Point2D {
 				return false;
 		}
 		public double calculateDistance(Point2D p) {
-			double distance,x_sq,y_sq;
-			x_sq = p.x-this.x;
-			y_sq = p.y-this.y;
-			distance = Math.sqrt((x_sq*x_sq)-(y_sq*y_sq));
+			double distance;
+			distance=(int) Math.sqrt(
+					(Math.pow((this.x-p.x),2.0) + Math.pow((this.y-p.y),2.0))
+					);
 			return distance;
 		}
 }

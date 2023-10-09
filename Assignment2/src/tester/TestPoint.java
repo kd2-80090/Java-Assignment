@@ -1,6 +1,7 @@
 package tester;
 
 import com.app.geometry.Point2D;
+
 import java.lang.Math;
 
 public class TestPoint {
