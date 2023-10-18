@@ -3,14 +3,16 @@ package com.sunbeam.testlinkedlist;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.sunbeam.linkedlist.Employee;
 
 public class TesterEmplotyee {
 	static int menu() {
 		System.out.println("**************************************************");
-		System.out.println("0.EXIT");
+		System.out.println("0. EXIT");
 		System.out.println("1. Add Employee");
 		System.out.println("2. Delete Employee in a list");
 		System.out.println("3. Find Employee in a list");
@@ -23,70 +25,86 @@ public class TesterEmplotyee {
 	}
 	
 	public static void main(String[] args) {
-		List <Employee> list = new LinkedList<>();
-		Employee emp;
-		Scanner sc;
 		int choice;
-		int index=0;
+		Employee emp;
+		Scanner sc=new Scanner(System.in);
+
+		List<Employee> list = new CopyOnWriteArrayList<>();
+		
 		while((choice=menu())!=0) {
 			switch(choice) {
 			case 1:		//add employee
 				emp = new Employee();
 				emp.accept(new Scanner(System.in));
 				list.add(emp);
-				index++;
 				break;
 			case 2:		//remove employee in given list
-//				for(int i=0;i<list.size();i++) {
-//					System.out.println(list.get(i));
-//				}
-				System.out.println("Enter employee id which to delete from a list : ");
-				Integer id=new Scanner(System.in).nextInt();
-				Employee value = new Employee();
-				value.setId(id);
-				int check = list.indexOf(value.getId());
-				list.remove(check);
-				System.out.println("-----------------------");
-				System.out.println("Deleted Successfully");
-				break;
+				int empid;
+			    System.out.println("Enter empid to delete  : ");
+			    empid = new Scanner(System.in).nextInt();
+			    Employee newEmp= new Employee();
+			    newEmp.setId(empid);
+			    
+			    ListIterator<Employee> empListIt=list.listIterator();
+			    if(list.contains(newEmp))//this will override equals method for this(because default it(equals) check for references)
+			    {
+			    	while(empListIt.hasNext()) 
+			         {
+			    		Employee empObj= empListIt.next();
+			        	if(empObj.equals(newEmp))
+			        	{
+			        		list.remove(empObj);
+					        System.out.println("Employee is deleted from the list");
+			        	}
+			         }
+			        
+			    } 
+			    else 
+			        System.out.println("Can't delete, Employee is not in the list");
+			    break;
 			case 3:		//find an employee
-				System.out.println("Enter Employee id to get details :");
-				Integer id1 = new Scanner(System.in).nextInt();
-				Employee key = new Employee();
-				
-				key.setId(id1);
-				if(list.contains(key))
-					System.out.println("Employee Details are : \n"+key);
+				int index;
+				int empid3;
+			    System.out.println("Enter Employee id to check if the Employee is in the list or not : ");
+			    empid3 = new Scanner(System.in).nextInt();
+			    Employee tempObj = new Employee();
+			    tempObj.setId(empid3);
+			    
+				index=list.indexOf(tempObj);//getindex of employee obj
+				if(index>=0) { 
+					System.out.println("Employee is in the list");
+					System.out.println(list.get(index));
+				}
 				else
-					System.out.println("Employee Not Found");
+					 System.out.println("Employee is not in the list");
 				break;
 			case 4:		//sort employee in a list
-				System.out.println("Enter index at which element to be deleted: ");
-				index=new Scanner(System.in).nextInt();
-//				Collections.sort((List<T>list);
-				System.out.println("-----------------------");
-				System.out.println("Deleted Successfully");
+				Collections.sort(list);
+				System.out.println("Employees Sorted by empid are : ");
+				for(Employee empo:list) 
+				{
+					System.out.println(empo);
+				}
 				break;
 			case 5:	
 				System.out.println("Enter emp id to be modified: ");
-				int id3 = new Scanner(System.in).nextInt();
-				Employee key1 = new Employee();
-				key1.setId(id3);
-				int index1 = list.indexOf(key1);
-				if(index == -1)
-				System.out.println("Employee not found.");
-				else {
-				Employee oldEmp = list.get(index1);
-				System.out.println("Employee Found: " + oldEmp);
-				System.out.println("Enter new information for the Employee");
-				Employee newEmp = new Employee();
-				newEmp.accept(new Scanner(System.in));
-				list.set(index, newEmp);
-				}
-				break;
-			case 6:
-				for(int i=0;i<list.size();i++) {
-					System.out.println(list.get(i));
+				int id = sc.nextInt();
+				Employee key = new Employee();
+				key.setId(id);
+				
+				int index5 = list.indexOf(key);
+				
+				if(index5 == -1)
+					System.out.println("Employee not found.");
+				else 
+				{
+					Employee oldEmp = list.get(index5);
+					System.out.println("Employee Found: " + oldEmp);
+					
+					System.out.println("Enter new information for the Employee");
+					Employee newEmp5 = new Employee();
+					newEmp5.accept(sc);
+					list.set(index5, newEmp5);//it will replace newemp5 object it at index
 				}
 				break;
 			default:
