@@ -6,19 +6,43 @@ import com.sunbeam.hashset.*;
 public class TesterBook {
 	public static int menu() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("");
+		System.out.println("***********************");
+		System.out.println("0. EXIT");
+		System.out.println("1. Add book.");
+		System.out.println("2. Search a book.");
+		System.out.println("Enter your choice = ");
 		int choice = sc.nextInt();
+		System.out.println("***********************");
 		return choice;
 	}
 	public static void main(String[] args) {
-		Map<String,Book> hashMap = new HashMap<>();
-		Book book;
-		hashMap.put("3key",new Book("WingsOfFire123",900,"APJAbdulKalam",12));
-		hashMap.put("2key",new Book("ImmortalsOfMeluha123",250,"Amish",25));
-		hashMap.put("4key",new Book("Yayati123",400,"VSKhandekar",35));
-		hashMap.put("1key",new Book("MrityunjayaTheDeathConqueror123",900,"ShivajiSawant",12));
-		hashMap.put("3key",new Book("WingsOfFire123",500,"APJAbdulKalam",11));
-		hashMap.get(hashMap);
-
+		int choice;
+		Scanner sc = new Scanner(System.in);
+		Map<String,Book> map = new HashMap<>();
+		while((choice=menu())!=0) {
+			switch(choice) {
+			case 1: //insert in map
+				Book b = new Book();
+				b.accept(sc);
+				map.put(b.getIsbn(), b);	// accept book from user
+				System.out.println("---------------------------");
+				System.out.println(" Book added successfully.");
+				break;
+			case 2: //find in map
+				System.out.println("Enter book id to find in list : ");
+				String isbn = sc.next();
+				if(map.get(isbn)!=null) {
+				Book f = map.get(isbn);
+				System.out.println("Book found : "+f);
+				}
+				else 
+					System.out.println("Book not found.");
+				break;
+			default:
+				System.out.println("Wrong choice...:(");
+				break;
+			}
+		}
+		System.out.println("Thank you for using our app...:)");
 	}
 }

@@ -16,7 +16,7 @@ public class Book {
 		this.authorName = authorName;
 		this.quantity = quantity;
 	}
-	public void accept(Scanner sc) {
+	public Book accept(Scanner sc) {
 		System.out.println("Enter unique book id = ");
 		this.isbn = sc.next();
 		System.out.println("Enter price of book = ");
@@ -25,6 +25,7 @@ public class Book {
 		this.authorName = sc.next();
 		System.out.println("Enter quantity = ");
 		this.quantity = sc.nextInt();
+		return new Book(this.isbn,this.price,this.authorName,this.quantity);
 	}
 	public String getIsbn() {
 		return isbn;
