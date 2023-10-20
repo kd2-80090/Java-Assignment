@@ -23,7 +23,7 @@ public class StringLength {
 		
 		
 		// call countIf() to count number of strings have length more than 6 -- using lambda expressions
-		int cnt1 = countIf(arr,s -> s.length() > 6);	//lambda expression
+		int cnt1 = countIf(arr,ele -> ele.length() > 6);	//lambda expression
 		
 		System.out.println("Result: " + cnt1); // 2
 		
