@@ -2,7 +2,7 @@ package com.test;
 
 import java.util.stream.IntStream;
 
-public class TesterFactorialStream {
+public class TesterIntStream {
 	
 	public static void main(String[] args) {
 		//Stream <Integer> wrapper type stream,
